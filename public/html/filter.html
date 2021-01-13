@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>연습</title>
+</head>
+
+<body>
+	<script src="/__/firebase/8.2.2/firebase-app.js"></script>
+	<script src="/__/firebase/8.2.2/firebase-auth.js"></script>
+	<script src="/__/firebase/8.2.2/firebase-database.js"></script>
+	<script src="/__/firebase/init.js?useEmulator=true"></script>
+	<script src="../js/jquery-3.5.1.min.js"></script>
+	<script src="../js/moment.min.js"></script>
+	<script>
+		var auth = firebase.auth();
+		var db = firebase.database();
+		var user = null;
+		var ref = null;
+		var google = new firebase.auth.GoogleAuthProvider();
+		auth.onAuthStateChanged(function (r) {
+			user = r;
+			db.ref('root/todo/' + user.uid).once('value').then(onGetList);
+		});
+		auth.signInWithPopup(google);
+
+		function onGetList(r) {		
+			
+			var will=[];
+			var allData = r.val();
+			console.log(allData);
+			a= Object.keys(allData).map(v=>allData[v]);		
+			var done=a.filter(v => v.comment=="사과");
+			var will=a.filter(v => v.checked==false);
+			console.log(done)
+			console.log(will)
+		
+		}
+	</script>
+
+</body>
+
+</html>

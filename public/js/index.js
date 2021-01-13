@@ -24,7 +24,7 @@ function onCheck(el) {
 
 function onAdd(r) {
 	if(!r.val().checked){
-	var html = '<li id="' + r.key + '">';
+	var html = '<li id="' + r.key + '" contenteditable="true">';
 	html += '<i class="active far fa-circle" onclick="onCheck(this,false)"></i>';
 	html += '<i class="far fa-check-circle" onclick="onCheck(this,true)"></i>';
 	html += '<span>' + r.val().comment + '</span>';
