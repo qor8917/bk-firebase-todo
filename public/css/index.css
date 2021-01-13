@@ -1,23 +1,42 @@
-.modal-wrapper {width: 100%; height: 100vh; top: 0; left: 0; background-color: rgba(0,0,0,0.7); position: fixed; display: flex; justify-content: center; align-items: center; z-index: 9999; }
+/* box-shadow: inset -2px -2px 5px rgba(255, 255, 255, 1),inset 3px 3px 5px rgba(0, 0, 0, 0.1);  뉴모피즘*/
 
-.header-wrapper {padding: 1em; background-color: #1a1a1a; color: #f9f9f9; display: flex; align-items: center; justify-content: space-between;}
+
+.modal-wrapper {width: 100%; min-height: 100vh; top: 0; left: 0; background-color: rgba(0,0,0,0.7); position: fixed; display: flex; justify-content: center; align-items: center; z-index: 9999; display: none;}
+.todo-wrapper{display: flex;flex-direction: column;justify-content: center;align-items: center;width: 100%;min-height: 100vh;background: #ebf5fc;color: #000;}
+.wrapper{width: 467px;}
+.header-wrapper {padding: 1em; background-color: #1a1a1a; color: #f9f9f9; display: flex; align-items: center; justify-content: space-between;width: 100%;}
 .header-wrapper .title-wrap {font-size: 1.5em;}
 .header-wrapper .sign-wrap {display: flex; align-items: center;}
 .header-wrapper .sign-wrap .icon {width: 36px; height: 36px; margin-right: 1em; border-radius: 50%; overflow: hidden;}
 .header-wrapper .sign-wrap .email {margin-right: 1em;}
 #btLogout::after {content: 'Logout'; display: inline-block;}
 
-.content-wrapper {width: 100%; height: calc(100vh - 70px); position: relative; display: flex;}
-.content-wrapper > div {flex: 0 0 50%; padding: 1em; height: 100%;}
-.content-wrapper .list-wrapper {background-image: linear-gradient(to right, #c6e987, #309138);}
-.list-wrapper .add-wrap {padding: 0.5em 0; background-color: rgba(255,255,255,0.4); margin: 0.25em; border-radius: 4px; display: flex; align-items: center;}
-.list-wrapper .add-wrap > .fa-plus {margin-left: 0.5em; color: #f9f9f9; font-size: 1.75em;}
-.list-wrapper .add-wrap > .form-control {background-color: transparent; border: none; outline: none; flex-grow: 1; font-size: 1.25em;}
-.list-wrapper .add-wrap > .form-control:focus {box-shadow: none;}
-.list-wrapper .list-wrap {margin-top: 1em;}
-.list-wrapper .list-wrap > li {padding: 1em; background-color: rgba(0,0,0,0.6); margin: 0.25em; color: #f9f9f9; font-size: 1.25em; border-radius: 4px;}
-.list-wrapper .list-wrap > li > i {display: none;}
-.list-wrapper .list-wrap > li > i.active {display: inline-block;}
+.contents-wrapper {flex: 1 1 100%;display: flex;align-items: center;justify-content: center;width: 100%;}
+.contents-wrapper .todo-list{width: 100%;height: 600px;background: #ebf5fc;box-shadow: -2px -2px 5px rgba(255, 255, 255, 1),3px 3px 5px rgba(0, 0, 0, 0.1);border-radius: 8px;padding: 1em 1em 2em 1em;overflow: hidden;display: flex;flex-direction: column;}
+.todo-list .title-wrap{display: flex;align-items: flex-end;}
+.todo-list .title-wrap>span img{width: 16px;height: 16px;animation: animate 2s infinite alternate;}
+@keyframes animate {
+	from{transform: rotate(-5deg) translateX(-3px);}
+	to{transform: rotate(5deg) translateX(3px);}
+}
+.todo-list .title-wrap>span {display: inline-block;padding: 0 1em;}
+.todo-list .title-wrap .title{font-size: 2.5em;font-weight: bold;padding-left: .25em;}
+.todo-list .type-wrap{display: flex;margin: 2em 0;}
+.todo-list .type-wrap .comment{background: #ebf5fc;box-shadow: -2px -2px 5px rgba(255, 255, 255, 1),3px 3px 5px rgba(0, 0, 0, 0.1);border-radius: 8px;border: 0;width: 75%;height: 48px;padding: 0 1em;box-sizing: border-box;}
+.todo-list .type-wrap .btn-add{width: 20%;background: #ebf5fc;box-shadow: -2px -2px 5px rgba(255, 255, 255, 1),3px 3px 5px rgba(0, 0, 0, 0.1);border-radius: 8px;height: 48px;margin-left: auto;font-weight: 600;border: 0;}
+.list-wrapper .list-wrap .list{width: 100%;padding: 1em 0.5em ;border-radius: 8px;font-weight: 500;	margin: 1em 0;display: flex;}
+.list-wrapper .list-wrap .list>span{text-align: justify;display: flex;align-items: center;justify-content: center;}
+.list-wrapper .list-wrap .list>i {margin-right: 1em;display: inline-block;padding: .25em;box-shadow: inset -2px -2px 5px rgba(255, 255, 255, 1),inset 3px 3px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(255, 255, 255, 1),3px 3px 5px rgba(0, 0, 0, 0.1); border-radius: 8px;border: khaki;width: 20px;height: 20px;display: flex;align-items: center;justify-content: center;}
+
+.menu-wrapper{width: 100%;display: flex;margin-top: auto;}
+.menu-wrap{width: 70%;font-size: 1.5em;display: flex;align-items: center;justify-content: center;background: #ebf5fc;box-shadow: -2px -2px 5px rgba(255, 255, 255, 1),3px 3px 5px rgba(0, 0, 0, 0.1);border-radius: 8px;}
+.menu-wrap> *{padding: .15em 0.75em;}
+.menu-wrapper .btn-add-new-wrap{width: 30%;display: flex;align-items: center;justify-content: center;}
+.menu-wrapper .btn-add-new-wrap .btn-add{width: 60px;height: 60px;border-radius: 50%;overflow: hidden;display: flex;align-items: center;justify-content: center;background: #ebf5fc;box-shadow: -2px -2px 5px rgba(255, 255, 255, 1),3px 3px 5px rgba(0, 0, 0, 0.1);}
+.menu-wrapper .btn-add-new-wrap img{width: 32px;height: 32px;}
+
+
+
 
 @media screen and (max-width: 1199px) {
 	
