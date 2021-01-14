@@ -1,51 +1,21 @@
-/************** 글로벌설정 ***************/
+/* ************* 글로벌설정 ***************/
 var auth = firebase.auth();
 var db = firebase.database();
 var user = null;
-var ref = null;
 var google = new firebase.auth.GoogleAuthProvider();
 var facebook = new firebase.auth.FacebookAuthProvider();
 
-/************** 이벤트콜백 ***************/
-function onGetHTML(r) {
-	$(".list-wrap").empty();
-}
-	var timeout;
-	function onCheck(el) {
-		$(el).removeClass("active").siblings("i").addClass("active");
-		if ($(el).hasClass("fa-circle")) {
-			timeout = setTimeout(() => {
-				$(el).parent().remove();
-				var data = {
-					checked: true
-				}
-				db.ref('root/todo/' + user.uid + '/' + $(el).parent().attr("id")).update(data)
-			}, 1000);
-		} else {
-			clearTimeout(timeout)
-		}
-
+/* ************* 이벤트콜백 ***************/
+	function onAdd(r) {		
+		if (!r.val().checked) addHTML(r);
+		document.querySelector(".type-wrap").reset();
 	}
-
-	function onAdd(r) {
-		if (!r.val().checked) {
-			console.log(r.val());
-			var html = '<li id="' + r.key + '">';
-			html += '<i class="active far fa-circle" onclick="onCheck(this,false)"></i>';
-			html += '<i class="far fa-check-circle" onclick="onCheck(this,true)"></i>';
-			html += '<span>' + r.val().comment + '</span>';
-			html += '</li>';
-			$(".list-wrap").prepend(html);
-		}
-		document.querySelector(".add-wrap").reset();
-	}
-	/* function onRev(r) {
+	function onRev(r) {
 		console.log(r.val());
-	}*/
+	}
 	function onChg(r) {
 		console.log(r.val());
 	}
-
 	function onAuthChg(r) {
 		if (r) {
 			user = r;
@@ -62,41 +32,64 @@ function onGetHTML(r) {
 			$('#btLogout').hide();
 		}
 	}
-
 	function onGoogleLogin() {
 		auth.signInWithPopup(google);
 	}
-
 	function onLogout() {
 		auth.signOut();
 	}
 
-	/************** 사용자함수 ***************/
-	function showDone() {
-		db.ref('root/todo/' + user.uid).once('value').then(onGetHTML)
+	function onCheck(key,chk,el){
+		db.ref('root/todo/'+user.uid+'/'+key).update({checked:chk})	
+		$(el).toggleClass("fa-check");			
+		$(el).parent().fadeOut(200);		
+	}
+	function onCompleted(){
+		var ref = db.ref('root/todo/'+user.uid);
+		ref.orderByChild('checked').equalTo(true).once('value').then(getData)
+		$(".type-wrap").hide();
+	}
+	function onToDo(){
+		var ref = db.ref('root/todo/'+user.uid);
+		ref.orderByChild('checked').equalTo(false).once('value').then(getData)
+		$(".type-wrap").show();
+	}
+	/************** 사용자함수 ***************/	
+	function getData(r){
+		$(".list-wrap").empty();
+		r.forEach(v => {
+			console.log(v.val());
+			addHTML(v);
+		});
+	}
+	function addHTML(r){
+		var html ='<li class="list swiper-slide" id="'+r.key+'">';
+		if(r.val().checked){
+				html +='<i class="fa fa-check" aria-hidden="true" onclick="onCheck(\''+r.key+'\',false,this);"></i><span>'+r.val().comment+'</span>';
+		}else{
+				html +='<i class="fa" aria-hidden="true" onclick="onCheck(\''+r.key+'\',true,this);"></i><span>'+r.val().comment+'</span>';}
+				html +='</li>';
+				$(".list-wrap").prepend(html);
 	}
 
-	function dbInit() {
-		db.ref('root/todo/' + user.uid).on('child_added', onAdd);
-		/* db.ref('root/todo/'+user.uid).on('child_removed', onRev); */
-		db.ref('root/todo/' + user.uid).on('child_changed', onChg);
-	}
-
-	function onSubmit(r) {
+	function onSubmit(el){		
+		var comment = el.comment.value;		
 		var data = {
-			checked: false,
-			comment: r.task.value,
-			createAt: moment().format('LLL')
+			createAt : moment().format('lll'),
+			checked : false,
+			comment : el.comment.value
 		}
-		if (!r.task.value == "") {
-			db.ref('root/todo/' + user.uid).push(data);
-		}
-
+		!comment=="" ? db.ref('root/todo/'+ user.uid).push(data):""
 		return false;
 	}
-
-	/************** 이벤트등록 ***************/
+	function dbInit() {
+		db.ref('root/todo/'+ user.uid).on('child_added', onAdd);
+		db.ref('root/todo/'+ user.uid).on('child_removed', onRev);
+		db.ref('root/todo/'+ user.uid).on('child_changed', onChg);
+	}
+		/************** 이벤트등록 ***************/
 	auth.languageCode = 'ko';
 	auth.onAuthStateChanged(onAuthChg);
 	$('#btGoogleLogin').click(onGoogleLogin);
 	$('#btLogout').click(onLogout);
+	

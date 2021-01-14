@@ -1,0 +1,32 @@
+[
+	{
+		"path": "$ROOTPATH$\\public\\css\\index.css",
+		"bookmarks": [
+			{
+				"line": 45,
+				"column": 14,
+				"label": ""
+			},
+			{
+				"line": 56,
+				"column": 14,
+				"label": ""
+			}
+		]
+	},
+	{
+		"path": "$ROOTPATH$\\public\\html\\index.html",
+		"bookmarks": [
+			{
+				"line": 47,
+				"column": 11,
+				"label": ""
+			},
+			{
+				"line": 52,
+				"column": 31,
+				"label": ""
+			}
+		]
+	}
+]

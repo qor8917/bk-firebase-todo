@@ -1,19 +1,30 @@
-/* box-shadow: inset -2px -2px 5px rgba(255, 255, 255, 1),inset 3px 3px 5px rgba(0, 0, 0, 0.1);  뉴모피즘*/
+/* box-shadow: inset -2px -2px 5px rgba(255, 255, 255, 1),inset 3px 3px 5px rgba(0, 0, 0, 0.1);  뉴모피즘 */
 
+::-webkit-scrollbar { display: none;}
 
 .modal-wrapper {width: 100%; min-height: 100vh; top: 0; left: 0; background-color: rgba(0,0,0,0.7); position: fixed; display: flex; justify-content: center; align-items: center; z-index: 9999; display: none;}
 .todo-wrapper{display: flex;flex-direction: column;justify-content: center;align-items: center;width: 100%;min-height: 100vh;background: #ebf5fc;color: #000;}
 .wrapper{width: 467px;}
-.header-wrapper {padding: 1em; background-color: #1a1a1a; color: #f9f9f9; display: flex; align-items: center; justify-content: space-between;width: 100%;}
+
+
+/*!헤더*/
+
+.header-wrapper {padding: 1em; background-color: #1a1a1a; color: #f9f9f9; display: flex; align-items: center; justify-content: space-between;width: 100%;flex:0 0 10%;}
 .header-wrapper .title-wrap {font-size: 1.5em;}
 .header-wrapper .sign-wrap {display: flex; align-items: center;}
 .header-wrapper .sign-wrap .icon {width: 36px; height: 36px; margin-right: 1em; border-radius: 50%; overflow: hidden;}
+.header-wrapper .sign-wrap .icon img{width: 100%;}
 .header-wrapper .sign-wrap .email {margin-right: 1em;}
-#btLogout::after {content: 'Logout'; display: inline-block;}
+#btLogout::after {content: 'Logout'; display: inline-block; }
+#btGoogleLogin,#btLogout{background: linear-gradient(135deg, #1e5799 0%,#7db9e8 100%); padding: 1em;color: #fff;border-radius:8px;border: 0;}
 
-.contents-wrapper {flex: 1 1 100%;display: flex;align-items: center;justify-content: center;width: 100%;}
-.contents-wrapper .todo-list{width: 100%;height: 600px;background: #ebf5fc;box-shadow: -2px -2px 5px rgba(255, 255, 255, 1),3px 3px 5px rgba(0, 0, 0, 0.1);border-radius: 8px;padding: 1em 1em 2em 1em;overflow: hidden;display: flex;flex-direction: column;}
-.todo-list .title-wrap{display: flex;align-items: flex-end;}
+
+
+/*!컨텐츠*/
+
+.contents-wrapper {flex: 1 1 90%;display: flex;align-items: center;justify-content: center;width: 100%;}
+.contents-wrapper .todo-list{width: 100%;height: auto;background: #ebf5fc;box-shadow: -2px -2px 5px rgba(255, 255, 255, 1),3px 3px 5px rgba(0, 0, 0, 0.1);border-radius: 8px;padding: 1em 1em 2em 1em;overflow: hidden;display: flex;flex-direction: column;}
+.todo-list .title-wrap{display: flex;align-items: flex-end;margin: 1em 0;}
 .todo-list .title-wrap>span img{width: 16px;height: 16px;animation: animate 2s infinite alternate;}
 @keyframes animate {
 	from{transform: rotate(-5deg) translateX(-3px);}
@@ -21,22 +32,40 @@
 }
 .todo-list .title-wrap>span {display: inline-block;padding: 0 1em;}
 .todo-list .title-wrap .title{font-size: 2.5em;font-weight: bold;padding-left: .25em;}
-.todo-list .type-wrap{display: flex;margin: 2em 0;}
+
+
+
+/*!타입하는곳*/
+
+.todo-list .type-wrap{display: flex;margin: 2em 0 0.5em 0;}
 .todo-list .type-wrap .comment{background: #ebf5fc;box-shadow: -2px -2px 5px rgba(255, 255, 255, 1),3px 3px 5px rgba(0, 0, 0, 0.1);border-radius: 8px;border: 0;width: 75%;height: 48px;padding: 0 1em;box-sizing: border-box;}
 .todo-list .type-wrap .btn-add{width: 20%;background: #ebf5fc;box-shadow: -2px -2px 5px rgba(255, 255, 255, 1),3px 3px 5px rgba(0, 0, 0, 0.1);border-radius: 8px;height: 48px;margin-left: auto;font-weight: 600;border: 0;}
-.list-wrapper .list-wrap .list{width: 100%;padding: 1em 0.5em ;border-radius: 8px;font-weight: 500;	margin: 1em 0;display: flex;}
+
+
+
+/*!리스트 생성되는곳*/
+
+.list-wrapper {overflow-y :auto; height: 320px;margin: 0.5em;-ms-overflow-style: none; } 
+.list-wrapper .list-wrap .list{width: 100%;padding: .75em 0.5em ;font-weight: 600;	margin: .5em 0;display: flex;}
 .list-wrapper .list-wrap .list>span{text-align: justify;display: flex;align-items: center;justify-content: center;}
-.list-wrapper .list-wrap .list>i {margin-right: 1em;display: inline-block;padding: .25em;box-shadow: inset -2px -2px 5px rgba(255, 255, 255, 1),inset 3px 3px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(255, 255, 255, 1),3px 3px 5px rgba(0, 0, 0, 0.1); border-radius: 8px;border: khaki;width: 20px;height: 20px;display: flex;align-items: center;justify-content: center;}
+.list-wrapper .list-wrap .list>i {margin-right: 1em;display: inline-block;padding: .25em;box-shadow: inset -2px -2px 5px rgba(255, 255, 255, 1),inset 3px 3px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(255, 255, 255, 1),3px 3px 5px 2px rgba(0, 0, 0, 0.15); width: 20px;height: 20px;display: flex;align-items: center;justify-content: center;border-radius: 8px;}
+.list-wrapper .list-wrap .list>i.fa-check {border: 2px solid;border-radius: 0;
+	border-image: linear-gradient(135deg, #1e5799 0%,#7db9e8 100%);border-image-slice: 1;color: #1e5799;}
+
+
+
+/*!메뉴 선택 하는곳*/
 
 .menu-wrapper{width: 100%;display: flex;margin-top: auto;}
 .menu-wrap{width: 70%;font-size: 1.5em;display: flex;align-items: center;justify-content: center;background: #ebf5fc;box-shadow: -2px -2px 5px rgba(255, 255, 255, 1),3px 3px 5px rgba(0, 0, 0, 0.1);border-radius: 8px;}
-.menu-wrap> *{padding: .15em 0.75em;}
+.menu-wrap> *{padding: .15em 0.75em; cursor: pointer;font-size: 0.875em;}
 .menu-wrapper .btn-add-new-wrap{width: 30%;display: flex;align-items: center;justify-content: center;}
-.menu-wrapper .btn-add-new-wrap .btn-add{width: 60px;height: 60px;border-radius: 50%;overflow: hidden;display: flex;align-items: center;justify-content: center;background: #ebf5fc;box-shadow: -2px -2px 5px rgba(255, 255, 255, 1),3px 3px 5px rgba(0, 0, 0, 0.1);}
+.menu-wrapper .btn-add-new-wrap .btn-add{width: 60px;height: 60px;border-radius: 50%;overflow: hidden;display: flex;align-items: center;justify-content: center;background: #ebf5fc;box-shadow: -3px -3px 2px 2px rgba(255, 255, 255, 1),3px 3px 8px 5px rgba(0, 0, 0, 0.1);transform: translateY(-1em);cursor: pointer;background: linear-gradient(135deg, #1e5799 0%,#7db9e8 100%);}
 .menu-wrapper .btn-add-new-wrap img{width: 32px;height: 32px;}
 
 
 
+/*!반응형*/
 
 @media screen and (max-width: 1199px) {
 	
@@ -55,5 +84,8 @@
 }
 
 @media screen and (max-width: 575px) {
+	.contents-wrapper {padding: 0 1em;}
+	.menu-wrap{width: 70%;font-size: 1.25em;}
+	.menu-wrapper .btn-add-new-wrap .btn-add{transform: translateY(0);}
 
 }
