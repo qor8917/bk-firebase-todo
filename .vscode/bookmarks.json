@@ -3,28 +3,28 @@
 		"path": "$ROOTPATH$\\public\\css\\index.css",
 		"bookmarks": [
 			{
-				"line": 45,
-				"column": 14,
+				"line": 25,
+				"column": 20,
 				"label": ""
 			},
 			{
-				"line": 56,
-				"column": 14,
+				"line": 26,
+				"column": 18,
 				"label": ""
-			}
-		]
-	},
-	{
-		"path": "$ROOTPATH$\\public\\html\\index.html",
-		"bookmarks": [
+			},
+			{
+				"line": 39,
+				"column": 20,
+				"label": ""
+			},
 			{
 				"line": 47,
-				"column": 11,
+				"column": 9,
 				"label": ""
 			},
 			{
-				"line": 52,
-				"column": 31,
+				"line": 58,
+				"column": 11,
 				"label": ""
 			}
 		]

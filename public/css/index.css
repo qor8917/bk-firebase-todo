@@ -3,13 +3,13 @@
 ::-webkit-scrollbar { display: none;}
 
 .modal-wrapper {width: 100%; min-height: 100vh; top: 0; left: 0; background-color: rgba(0,0,0,0.7); position: fixed; display: flex; justify-content: center; align-items: center; z-index: 9999; display: none;}
-.todo-wrapper{display: flex;flex-direction: column;justify-content: center;align-items: center;width: 100%;min-height: 100vh;background: #ebf5fc;color: #000;}
+.todo-wrapper{display: flex;flex-direction: column;width: 100%;min-height: 100vh;background: #ebf5fc;color: #000;}
 .wrapper{width: 467px;}
 
 
 /*!헤더*/
 
-.header-wrapper {padding: 1em; background-color: #1a1a1a; color: #f9f9f9; display: flex; align-items: center; justify-content: space-between;width: 100%;flex:0 0 10%;}
+.header-wrapper {padding: 1em; background-color: #1a1a1a; color: #f9f9f9; display: flex; align-items: center; justify-content: space-between;width: 100%;}
 .header-wrapper .title-wrap {font-size: 1.5em;}
 .header-wrapper .sign-wrap {display: flex; align-items: center;}
 .header-wrapper .sign-wrap .icon {width: 36px; height: 36px; margin-right: 1em; border-radius: 50%; overflow: hidden;}
@@ -22,8 +22,8 @@
 
 /*!컨텐츠*/
 
-.contents-wrapper {flex: 1 1 90%;display: flex;align-items: center;justify-content: center;width: 100%;}
-.contents-wrapper .todo-list{width: 100%;height: auto;background: #ebf5fc;box-shadow: -2px -2px 5px rgba(255, 255, 255, 1),3px 3px 5px rgba(0, 0, 0, 0.1);border-radius: 8px;padding: 1em 1em 2em 1em;overflow: hidden;display: flex;flex-direction: column;}
+.contents-wrapper {display: flex;align-items: center;justify-content: center;width: 100%;flex: 1;margin: 1em 0;}
+.contents-wrapper .todo-list{width: 100%;background: #ebf5fc;box-shadow: -2px -2px 5px rgba(255, 255, 255, 1),3px 3px 5px rgba(0, 0, 0, 0.1);border-radius: 8px;padding: 1em 1em 2em 1em;overflow: hidden;display: flex;flex-direction: column;}
 .todo-list .title-wrap{display: flex;align-items: flex-end;margin: 1em 0;}
 .todo-list .title-wrap>span img{width: 16px;height: 16px;animation: animate 2s infinite alternate;}
 @keyframes animate {
@@ -45,7 +45,7 @@
 
 /*!리스트 생성되는곳*/
 
-.list-wrapper {overflow-y :auto; height: 320px;margin: 0.5em;-ms-overflow-style: none; } 
+.list-wrapper {overflow-y :auto; margin: 0.5em;-ms-overflow-style: none; height: 320px;} 
 .list-wrapper .list-wrap .list{width: 100%;padding: .75em 0.5em ;font-weight: 600;	margin: .5em 0;display: flex;}
 .list-wrapper .list-wrap .list>span{text-align: justify;display: flex;align-items: center;justify-content: center;}
 .list-wrapper .list-wrap .list>i {margin-right: 1em;display: inline-block;padding: .25em;box-shadow: inset -2px -2px 5px rgba(255, 255, 255, 1),inset 3px 3px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(255, 255, 255, 1),3px 3px 5px 2px rgba(0, 0, 0, 0.15); width: 20px;height: 20px;display: flex;align-items: center;justify-content: center;border-radius: 8px;}
@@ -67,25 +67,14 @@
 
 /*!반응형*/
 
-@media screen and (max-width: 1199px) {
-	
-}
-
-@media screen and (max-width: 991px) {
-	
-}
-
 @media screen and (max-width: 767px) {
 	.sign-wrap .email {display: none;}
 	#btLogout::after {content: '';}
-
-	.content-wrapper .list-wrapper {position: absolute; width: 80%; box-shadow: 4px 0 6px rgba(0,0,0,0.4);}
-	.content-wrapper .edit-wrapper {flex: 0 0 100%;}
 }
 
 @media screen and (max-width: 575px) {
 	.contents-wrapper {padding: 0 1em;}
 	.menu-wrap{width: 70%;font-size: 1.25em;}
 	.menu-wrapper .btn-add-new-wrap .btn-add{transform: translateY(0);}
-
+	
 }
